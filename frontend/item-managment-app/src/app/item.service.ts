@@ -8,7 +8,10 @@ import { mergeMap, map} from 'rxjs/operators'
 export class ItemService {
   root = "http://localhost:3000/"
   constructor(private http: HttpClient) { }
-
+  
+  /**
+  * All the helper functions which return the api's anwser
+  */
   get_items(){
     return this.http.get(this.root + "items/getItems");
   }
