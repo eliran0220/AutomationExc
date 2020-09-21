@@ -1,0 +1,171 @@
+<div class="items-list">
+  <table class="table table-hover" id="ItemsTable" name = "Table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Description</th>
+        <th>Operations</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of item_list">
+        <td id="ItemIdTD">{{ item.id }}</td>
+        <td id="ItemNameTD"> {{ item.name }}</td>
+        <td id="ItemAmountTD"> {{ item.amount }}</td>
+        <td id="ItemDescrptionTD"> {{ item.description}}</td>
+        <td class="overflow-hidden">
+          <div ngbDropdown container="body">
+            <button class="btn btn-outline-primary btn-sm" id="OperationsButton" ngbDropdownToggle>Actions</button>
+            <div ngbDropdownMenu>
+              <!-- This is the deposit section -->
+              <div>
+                <ng-template #deposit let-modal>
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-deposit">Deposit amount</h4>
+                  </div>
+                  <div class="modal-body">
+                    <form class="text-center" id="DepositForm" #depositItemForm="ngForm"
+                      (ngSubmit)="onDepositSubmit(depositItemForm,item.id)">
+                      <p class="h4"></p>
+                      <div class="text-center mt-3">
+                        <input ngModel required type="number" name="Amount" id="AmountDepositInput" class="form-control"
+                          placeholder="Amount" #itemAmount="ngModel">
+                      </div>
+                      <br>
+                      <div class="text-center"><button class="btn btn-block btn btn-warning" id="ApplyDeposit"
+                          type="submit">Deposit
+                          quantity</button></div>
+                    </form>
+                  </div>
+                </ng-template>
+                <button class="btn btn-outline-dark" id="DepositButton" style="width: 100%;"
+                  (click)="open(deposit)">Deposit</button>
+              </div>
+              <!-- End of deposit section  -->
+              <br>
+              <!-- This is the withdraw section -->
+              <div>
+                <ng-template #withdraw let-modal>
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-withdraw">Withdraw amount</h4>
+                  </div>
+                  <div class="modal-body">
+                    <form class="text-center" #withdrawItemForm="ngForm" id="WithdrawForm"
+                      (ngSubmit)="onWithdrawSubmit(withdrawItemForm,item.id)">
+                      <p class="h4"></p>
+                      <div class="text-center mt-3">
+                        <input ngModel required type="number" id="AmountWithdrawInput" name="Amount"
+                          class="form-control" placeholder="Amount" #itemAmount="ngModel">
+                      </div>
+                      <br>
+                      <div class="text-center"><button class="btn btn-block btn btn-warning" id="ApplyWithdraw"
+                          type="submit">Withdraw
+                          quantity</button></div>
+                    </form>
+                  </div>
+                </ng-template>
+                <button class="btn btn-outline-dark" id="WithdrawButton" style="width: 100%;"
+                  (click)="open(withdraw)">Withdraw</button>
+              </div>
+              <!-- End of withdraw section  -->
+              <br>
+              <!-- This is the update section -->
+              <div>
+                <ng-template #update let-modal>
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-update">Update item</h4>
+                  </div>
+                  <div class="modal-body">
+                    <form class="text-center" #updateItemForm="ngForm" id="UpdateForm"
+                      (ngSubmit)="onUpdateSubmit(updateItemForm,item.id)">
+                      <p class="h4"></p>
+                      <div class="text-center mt-3">
+                        <input ngModel required type="text" id="NameUpdateInput" name="Name" class="form-control"
+                          placeholder="Name" #itemAmount="ngModel">
+                      </div>
+                      <div class="text-center mt-3">
+                        <input ngModel required type="number" id="AmountUpdateInput" name="Amount" class="form-control"
+                          placeholder="Amount" #itemAmount="ngModel">
+                      </div>
+                      <div class="text-center mt-3">
+                        <input ngModel required type="text" id="DescriptionUpdateInput" name="Description"
+                          class="form-control" placeholder="Description" #itemAmount="ngModel">
+                      </div>
+                      <br>
+                      <div class="text-center"><button class="btn btn-block btn btn-warning" id="UpdateApply"
+                          type="submit">Update
+                          item</button></div>
+                    </form>
+                  </div>
+                </ng-template>
+                <button class="btn btn-outline-dark" id="UpdateButton" style="width: 100%;"
+                  (click)="open(update)">Update</button>
+              </div>
+              <!-- End of update section  -->
+              <br>
+              <!-- This is the Delete section -->
+              <div>
+                <ng-template #delete let-modal>
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-update">Delete item</h4>
+                  </div>
+                  <div class="modal-body">
+                    <form class="text-center" #deleteItem="ngForm" id="DeleteForm"
+                      (ngSubmit)="onDeleteSubmit(deleteItem,item.id)">
+                      <div class="text-center"><button class="btn btn-block btn btn-warning" id ="DeleteApply" type="submit">Delete
+                          item</button></div>
+                    </form>
+                  </div>
+                </ng-template>
+                <button class="btn btn-outline-dark" id= "DeleteButton" style="width: 100%;"
+                  (click)="open(delete)">Delete</button>
+              </div>
+              <!-- End of Delete section  -->
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- Add item holder -->
+<form class="text-center formHolder" id="AddItemID" #addItemForm="ngForm" (ngSubmit)="onAddSubmit(addItemForm)">
+  <p class="h4">Add item</p>
+  <div class="text-center mt-4">
+    <input ngModel required type="text" id="NameInput" class="form-control" placeholder="Item name" name="Name"
+      #itemName="ngModel">
+  </div>
+  <div class="text-center mt-3">
+    <input ngModel required type="number" id="AmountInput" pattern="[0-9]{10}" name="Amount" class="form-control"
+      placeholder="Amount" #itemAmount="ngModel">
+  </div>
+  <div class="text-center mt-2">
+    <input ngModel required type="text" id="DescriptionInput" name="Description" class="form-control"
+      placeholder="Description" #inventoryCode="ngModel">
+  </div>
+  <br>
+  <div class="text-center">
+    <button class="btn btn-block btn btn-success" id="AddButton" type="submit">
+      Create</button>
+  </div>
+</form>
+
+<!-- Get item holder -->
+<form class="text-center getItemHolder" id="GetItemID" #getItemForm="ngForm" (ngSubmit)="onGetSubmit(getItemForm)">
+  <p class="h4">Get item</p>
+  <div class="text-center mt-4">
+    <input ngModel required type="text" id="InputID" class="form-control" placeholder="Item Id" name="Id"
+      #itemName="ngModel">
+  </div>
+  <br>
+  <div class="text-center">
+    <button class="btn btn-block btn btn-success" id="GetButton" type="submit">
+      Display</button>
+  </div>
+</form>
+
+<div class="alert getHolder text-center mt-4  alert-dismissible fade show " id="ResultDiv" role="alert">
+  {{alertMessage}}
+</div>
