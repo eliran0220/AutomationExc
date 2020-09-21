@@ -6,6 +6,7 @@
 - To build, type: npm run 
 
  **********CYPRESS TESTING**********
+ 
  I have included 4 testing files as requested via cypress framework, testing the adding, deleting, getting functionalities.
  The Update/Deposit/Withdraw are all together in "operations.spec.js".
 
