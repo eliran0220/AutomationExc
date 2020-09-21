@@ -11,6 +11,7 @@
  I have included 4 testing files as requested via cypress framework, testing the adding, deleting, getting functionalities.
  The Update/Deposit/Withdraw are all together in "operations.spec.js".
  The tests apply to the first element in the list of items.
+ To run : ./node_modules/.bin/cypress open
  
  ***********DOCKER IMAGE**********
  It was not requested, but I have pushed a docker image of the backend to this repo:https://hub.docker.com/r/eliran0220/server-docker
