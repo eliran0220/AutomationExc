@@ -8,6 +8,7 @@
  
  I have included 4 testing files as requested via cypress framework, testing the adding, deleting, getting functionalities.
  The Update/Deposit/Withdraw are all together in "operations.spec.js".
+ The tests apply to the first element in the list of items.
 
 
  Best regards, Eliran Darshan.
