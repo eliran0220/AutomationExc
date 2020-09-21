@@ -11,6 +11,7 @@ export class ItemService {
   
   /**
   * All the helper functions which return the api's anwser
+  * Each function goes to the baseURL provided in the root and sends the request (with paramns or body).
   */
   get_items(){
     return this.http.get(this.root + "items/getItems");
